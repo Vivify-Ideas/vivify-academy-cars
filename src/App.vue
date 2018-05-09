@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <nav-bar />
-    <div class="container-fluid">
-      <router-view />
+    <div class="container">
+      <div class="col-sm-10 offset-sm-1">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
