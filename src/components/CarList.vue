@@ -13,7 +13,8 @@
         <li class="list-group-item">Engine: {{ capitalize(car.engine) }}</li>
       </ul>
       <div class="card-body">
-        <router-link :to="{ name: 'edit', params: { id: car.id } }" class="card-link">Edit</router-link>
+        <router-link :to="{ name: 'edit', params: { id: car.id } }" class="btn btn-default">Edit</router-link>
+        <button class="btn btn-danger" @click="onDelete(car)">Delete</button>
       </div>
     </div>
   </div>
@@ -30,6 +31,10 @@ export default {
   methods: {
     capitalize (str) {
       return capitalize(str)
+    },
+
+    onDelete (car) {
+      this.$emit('onDelete', car)
     }
   }
 
