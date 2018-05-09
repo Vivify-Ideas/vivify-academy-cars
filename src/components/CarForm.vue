@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmit" class="jumbotron">
+  <form @submit.prevent="onSubmit" @reset="onReset" class="jumbotron">
     <div class="form-group row">
       <label class="col-4 col-form-label" for="brand">Brand</label> 
       <div class="col-8">
@@ -74,6 +74,7 @@
     </div> 
     <div class="form-group row">
       <div class="offset-4 col-8">
+        <button name="reset" type="reset" class="btn btn-default">Reset</button>
         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
@@ -95,6 +96,10 @@ export default {
   methods: {
     onSubmit () {
       this.$emit('onSubmit')
+    },
+
+    onReset () {
+      this.$emit('onReset')
     }
   }
 }

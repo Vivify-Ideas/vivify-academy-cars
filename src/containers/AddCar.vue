@@ -1,6 +1,6 @@
 <template>
   <div>
-    <car-form :car="car" @onSubmit="addCar"></car-form>
+    <car-form :car="car" @onSubmit="addCar" @onReset="resetForm"></car-form>
   </div>
 </template>
 
@@ -15,15 +15,7 @@ export default {
 
   data () {
     return {
-      car: {
-        brand: '',
-        model: '',
-        maxSpeed: 200,
-        year: 1990,
-        isAutomatic: false,
-        numberOfDoors: 4,
-        engine: 'diesel'
-      }
+      car: this.getDefaultCar()
     }
   },
 
@@ -37,8 +29,24 @@ export default {
         })
     },
 
+    resetForm () {
+      this.car = this.getDefaultCar()
+    },
+
     redirectToCars () {
       this.$router.push({ name: 'cars' })
+    },
+
+    getDefaultCar () {
+      return {
+        brand: '',
+        model: '',
+        maxSpeed: 200,
+        year: 1990,
+        isAutomatic: false,
+        numberOfDoors: 4,
+        engine: 'diesel'
+      }
     }
   }
 }
