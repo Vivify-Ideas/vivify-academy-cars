@@ -75,6 +75,7 @@
     <div class="form-group row">
       <div class="offset-4 col-8">
         <button name="reset" type="reset" class="btn btn-default">Reset</button>
+        <button name="preview" type="button" @click="preview" class="btn btn-default">Preview</button>
         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
@@ -82,6 +83,8 @@
 </template>
 
 <script>
+import capitalize from 'lodash/capitalize'
+
 export default {
   props: {
     car: Object
@@ -100,6 +103,18 @@ export default {
 
     onReset () {
       this.$emit('onReset')
+    },
+
+    preview () {
+      alert(`
+        Brand: ${this.car.brand}
+        Model: ${this.car.model}
+        Year: ${this.car.year}
+        Maximum Speed: ${this.car.maxSpeed}
+        Number of Doors: ${this.car.numberOfDoors}
+        Engine: ${capitalize(this.car.model)}
+        ${this.car.isAutomatic ? 'Automatic' : 'Manual'}
+      `)
     }
   }
 }
