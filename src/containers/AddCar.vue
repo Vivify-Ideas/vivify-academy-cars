@@ -1,6 +1,6 @@
 <template>
   <div>
-    <car-form :car="car" @onSubmit="addCar" @onReset="resetForm"></car-form>
+    <car-form :car="car" @onSubmit="onSubmit" @onReset="resetForm"></car-form>
   </div>
 </template>
 
@@ -19,9 +19,33 @@ export default {
     }
   },
 
+  created () {
+    this.$route.params.id && cars.get(this.$route.params.id)
+      .then((response) => {
+        this.car = response.data
+      })
+  },
+
   methods: {
+    onSubmit () {
+      if (this.car.id) {
+        this.editCar()
+      } else {
+        this.addCar()
+      }
+    },
+
     addCar () {
       cars.add(this.car)
+        .then((success) => {
+          this.redirectToCars()
+        }).catch((error) => {
+          console.log(error)
+        })
+    },
+
+    editCar () {
+      cars.edit(this.car)
         .then((success) => {
           this.redirectToCars()
         }).catch((error) => {

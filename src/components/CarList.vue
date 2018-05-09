@@ -13,8 +13,7 @@
         <li class="list-group-item">Engine: {{ capitalize(car.engine) }}</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Holder</a>
-        <a href="#" class="card-link">Holder</a>
+        <router-link :to="{ name: 'edit', params: { id: car.id } }" class="card-link">Edit</router-link>
       </div>
     </div>
   </div>
